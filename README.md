@@ -37,6 +37,8 @@ From this page, you have the possibility to add scripts by choosing the position
 - Top of the body
 - Bottom of the body
 
+The value can be different from site to site.
+
 The section is only available to admin users or users with the permission to access the plugin.
 
 ![Injector admin display](docs/images/admin-display.png)

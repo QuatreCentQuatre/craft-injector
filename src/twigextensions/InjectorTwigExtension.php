@@ -7,6 +7,8 @@ use Twig\Extension\AbstractExtension;
 use Twig\Extension\GlobalsInterface;
 use Twig\TwigFunction;
 use quatrecentquatre\injector\records\InjectorScriptsRecord;
+use quatrecentquatre\injector\services\InjectorService;
+
 
 class InjectorTwigExtension extends AbstractExtension implements GlobalsInterface
 {
@@ -53,15 +55,12 @@ class InjectorTwigExtension extends AbstractExtension implements GlobalsInterfac
     }
 
     /**
-     * Get key for Craft template caching.
-     *
-     * @param string $prefix
-     * @param bool $paginate
-     * @return string
+     * Get script by site
      */
     public function getAllScripts()
     {
-        return InjectorScriptsRecord::find()->all();
+        $site = (new InjectorService())->getSiteIdFromHandle();
+        return InjectorScriptsRecord::find()->where(['=', 'site', $site])->all();
     }
     
 }

@@ -21,6 +21,7 @@ class Install extends Migration
             'dateCreated'   => $this->dateTime(),
             'dateUpdated'   => $this->dateTime(),
             'position'      => $this->string()->defaultValue('head'),
+            'site'          => $this->integer(),
             'script'        => $this->text(),
             'uid'           => $this->string(),
         ]);
@@ -34,6 +35,6 @@ class Install extends Migration
     public function safeDown(): bool
     {
         $this->dropTable('{{%injector_scripts}}');
-        return false;
+        return true;
     }
 }
