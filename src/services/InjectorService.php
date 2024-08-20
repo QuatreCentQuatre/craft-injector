@@ -4,7 +4,7 @@ namespace quatrecentquatre\injector\services;
 
 use Craft;
 use craft\base\Component;
-use quatrecentquatre\injector\Injector;
+use yii\web\NotFoundHttpException;
 use craft\web\View;
 use quatrecentquatre\injector\records\InjectorScriptsRecord;
 
