@@ -5,9 +5,8 @@ Injector is a CraftCms plugin used to inject tracking scripts in your website.
 ## Requirements
 
 This plugin requires : 
-- Craft CMS 5.0.0 or later.
-- PHP 8.2 or later.
-- Mysql database
+- Craft CMS 4.5.0 or later.
+- PHP 8.0.2 or later.
 
 ## Installation
 
