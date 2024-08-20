@@ -4,6 +4,7 @@ namespace quatrecentquatre\injector\controllers;
 use Craft;
 use craft\web\Controller;
 use quatrecentquatre\injector\records\InjectorScriptsRecord;
+use quatrecentquatre\injector\services\InjectorService;
 
 class InjectorController extends Controller
 {
@@ -20,12 +21,14 @@ class InjectorController extends Controller
         $request = Craft::$app->getRequest();
         $scripts = $request->getParam('scripts');
 
-        Craft::$app->db->createCommand()->truncateTable(InjectorScriptsRecord::tableName())->execute();
+        $site = (new InjectorService())->getSiteIdFromHandle();
+        InjectorScriptsRecord::deleteAll(['=', 'site', $site]);
 
         foreach($scripts as $script) {
             $record = new InjectorScriptsRecord();
             $record->position = $script['position'];
             $record->script = $script['script'];
+            $record->site = $site;
             $record->save();
         }
 

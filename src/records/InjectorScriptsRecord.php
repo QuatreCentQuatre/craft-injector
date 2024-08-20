@@ -8,6 +8,7 @@ use craft\db\ActiveRecord;
  * @property int $id
  * @property string $position
  * @property string $script
+ * @property int $site
  */
 class InjectorScriptsRecord extends ActiveRecord
 {
