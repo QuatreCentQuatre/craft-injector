@@ -29,5 +29,19 @@ composer require quatrecentquatre/craft-injector
 ./craft plugin/install craft-injector
 ```
 
+## How it works
 
-Develop by [QuatreCentQuatre](https://www.quatrecentquatre.com)
+In the menu, a section called Injector is added once the plugin is properly installed. 
+
+From this page, you have the possibility to add scripts by choosing the position in the page. 
+- Head
+- Top of the body
+- Bottom of the body
+
+The section is only available to admin users or users with the permission to access the plugin.
+
+![Injector admin display](docs/images/admin-display.png)
+
+### Credits
+Developped by : [QuatreCentQuatre](https://www.quatrecentquatre.com)<br>
+Developper : [Robin Gauthier](https://github.com/robin-gauthier)
