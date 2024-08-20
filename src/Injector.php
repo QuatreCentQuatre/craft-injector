@@ -16,7 +16,7 @@ use quatrecentquatre\injector\twigextensions\InjectorTwigExtension;
  */
 class Injector extends Plugin
 {
-    public string $schemaVersion = '1.0.0';
+    public string $schemaVersion = '1.0.1';
     public bool $hasCpSection = true;
 
     public function init(): void

@@ -6,9 +6,9 @@ use Craft;
 use craft\db\Migration;
 
 /**
- * m240819_153321_create_injector_table migration.
+ * Install migration.
  */
-class m240819_153321_create_injector_table extends Migration
+class Install extends Migration
 {
     /**
      * @inheritdoc
