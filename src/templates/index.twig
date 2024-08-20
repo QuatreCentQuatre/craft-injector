@@ -1,0 +1,53 @@
+{% extends "_layouts/cp.twig" %}
+{% import "_includes/forms" as forms %}
+
+{# Set Title #}
+{% set title = "Injector" %}
+{% set description = "Add analytics scripts to your website." %}
+
+{% do view.registerAssetBundle("quatrecentquatre\\injector\\assets\\AssetsBundle") %}
+
+{% set fullPageForm = true %}
+
+{% set position = [
+    { 'label' : 'Head', 'value' : 'head' },
+    { 'label' : 'Body - Top', 'value' : 'body_top' },
+    { 'label' : 'Body - Bottom', 'value' : 'body_bottom' },
+]
+%}
+
+
+{% block content %}
+
+    {{ actionInput('injector/injector/save') }}
+                      
+    {{ forms.editableTableField({
+        label: "Scripts"|t('injector'),
+        instructions: "List of script to include in website."|t('injector'),
+        id: 'scripts',
+        name: 'scripts',
+        cols: {
+            position: {
+                type: 'select',
+                heading: "Position"|t('injector'),
+                options : position,
+                width: '220px', 
+            },
+            script: {
+                type: 'multiline',
+                heading: "Script"|t('injector'),
+                class : 'script-value',
+            },
+        }|filter,
+        
+        allowAdd: true,
+        allowDelete: true,
+        allowReorder: true,
+        required: false,
+
+        rows: getAllScripts(),
+        errors: [],
+    }) }}
+    
+
+{% endblock %}

@@ -1,0 +1,3 @@
+table.editable tbody textarea.invalid {
+    border : 1px solid red;
+}
