@@ -6,9 +6,9 @@ use Craft;
 use craft\db\Migration;
 
 /**
- * m240819_153321_create_injector_table migration.
+ * Install migration.
  */
-class m240819_153321_create_injector_table extends Migration
+class Install extends Migration
 {
     /**
      * @inheritdoc
@@ -21,6 +21,7 @@ class m240819_153321_create_injector_table extends Migration
             'dateCreated'   => $this->dateTime(),
             'dateUpdated'   => $this->dateTime(),
             'position'      => $this->string()->defaultValue('head'),
+            'site'          => $this->integer(),
             'script'        => $this->text(),
             'uid'           => $this->string(),
         ]);
@@ -34,6 +35,6 @@ class m240819_153321_create_injector_table extends Migration
     public function safeDown(): bool
     {
         $this->dropTable('{{%injector_scripts}}');
-        return false;
+        return true;
     }
 }

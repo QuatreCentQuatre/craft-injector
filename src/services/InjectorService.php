@@ -4,7 +4,7 @@ namespace quatrecentquatre\injector\services;
 
 use Craft;
 use craft\base\Component;
-use quatrecentquatre\injector\Injector;
+use yii\web\NotFoundHttpException;
 use craft\web\View;
 use quatrecentquatre\injector\records\InjectorScriptsRecord;
 
@@ -26,7 +26,8 @@ class InjectorService extends Component
         $request = Craft::$app->getRequest();
 
         if (!$request->getIsCpRequest() && !$request->getIsConsoleRequest()) {
-            $scripts = InjectorScriptsRecord::find()->all();
+
+            $scripts = InjectorScriptsRecord::find()->where(['=', 'site', Craft::$app->getSites()->currentSite->id])->all();
             foreach ($scripts as $script) {
                 
                 $position = match($script['position']) {
@@ -41,6 +42,32 @@ class InjectorService extends Component
 
             }
         }
+    }
+
+    /**
+     * Return a siteId from a siteHandle
+     *
+     * @param string|null $siteHandle
+     *
+     * @return int|null
+     * @throws NotFoundHttpException
+     */
+    public function getSiteIdFromHandle()
+    {
+        $siteHandle = Craft::$app->getRequest()->getParam('site', 'default');
+
+        // Get the site to edit
+        if ($siteHandle !== null) {
+            $site = Craft::$app->getSites()->getSiteByHandle($siteHandle);
+            if (!$site) {
+                throw new NotFoundHttpException('Invalid site handle: ' . $siteHandle);
+            }
+            $siteId = $site->id;
+        } else {
+            $siteId = Craft::$app->getSites()->currentSite->id;
+        }
+
+        return $siteId;
     }
 
 }
